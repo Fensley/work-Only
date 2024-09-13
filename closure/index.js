@@ -77,7 +77,7 @@ const https =
 fetch(https)
   .then((res) => res.json())
   .then((data) => {
-    // console.log(data.documents)
+    console.log(data.documents);
   });
 
 select.addEventListener("change", (e) => {
