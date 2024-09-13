@@ -9,6 +9,7 @@ const https =
 const form = document.querySelector("#create-form");
 const total = document.querySelector("#total-calories");
 // console.log(form)
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const api = new FetchWrapper(https);
