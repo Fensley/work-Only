@@ -62,3 +62,24 @@ createShape({
   type: "rectangle",
   dimensions: [20, 15],
 });
+
+/////////
+//remain code
+import FetchWrapper from "./fetch-wrapper.js";
+
+const select = document.querySelector("#create-name");
+const carbs = document.querySelector("#create-carbs");
+const protein = document.querySelector("#create-protein");
+const fat = document.querySelector("#create-fat");
+const https =
+  "https://firestore.googleapis.com/v1/projects/jsdemo-3f387/databases/(default)/documents/......";
+
+fetch(https)
+  .then((res) => res.json())
+  .then((data) => {
+    // console.log(data.documents)
+  });
+
+select.addEventListener("change", (e) => {
+  console.log(e.target.value);
+});
