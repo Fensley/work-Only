@@ -27,7 +27,6 @@ const server = http.createServer((req, res) => {
     fs.readFile("./form.html", (err, data) => {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(data);
-      //   console.log(req);
       return res.end();
     });
   }
