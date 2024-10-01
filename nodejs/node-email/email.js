@@ -1,10 +1,10 @@
 const http = require("http");
 const nodemailer = require("nodemailer");
 
-// Create transporter object using the SMTP transport protocol
+// * Create transporter object using the SMTP transport protocol
 const transporter = nodemailer.createTransport({
   service: "gmail",
-  // You can use other services (like Outlook, Yahoo, etc.)
+  // * You can use other services (like Outlook, Yahoo, etc.)
   auth: {
     user: "your-email@gmail.com",
     // Your email address
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Send email function
+// * Send email function
 const sendEmail = (to, subject, text) => {
   const mailOptions = {
     from: "your-email@gmail.com",
@@ -22,7 +22,7 @@ const sendEmail = (to, subject, text) => {
     text: text,
   };
 
-  // Send email
+  // * Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log("Error:", error);
@@ -32,7 +32,7 @@ const sendEmail = (to, subject, text) => {
   });
 };
 
-// Create a server to send email when accessed
+// * Create a server to send email when accessed
 const server = http.createServer((req, res) => {
   if (req.url === "/sendemail") {
     sendEmail(
@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
-// Start the server
+// * Start the server
 server.listen(3000, () => {
   console.log("Server running at http://localhost:3000/");
 });
