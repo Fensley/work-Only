@@ -1,7 +1,6 @@
 const http = require("http");
 const nodemailer = require("nodemailer");
 const password = "ddsdddsdddnf";
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -9,7 +8,6 @@ const transporter = nodemailer.createTransport({
     pass: password,
   },
 });
-
 const mailoption = {
   from: "ffafasffdfe@gmail.com",
   to: "zsdsdde@gmail.com",
