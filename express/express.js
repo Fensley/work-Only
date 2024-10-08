@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const fs = require("fs");
+const http = require("http");
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("file saved");
 });
 
-app.listen(port, () => {
-  console.log(`Example of app listening `);
+app.listen(3000, (err) => {
+  if (err) throw err;
+  console.log("app has open");
 });
