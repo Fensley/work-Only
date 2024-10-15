@@ -6,6 +6,8 @@ const __dirname = import.meta.dirname + "/index.html";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.all();
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname);
 });
