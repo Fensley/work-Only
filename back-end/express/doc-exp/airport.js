@@ -29,4 +29,4 @@ app.listen(port, (err) => {
   if (err) throw err;
   console.log("the server has been open");
 });
-console.log(fullname);
+// console.log(fullname);
