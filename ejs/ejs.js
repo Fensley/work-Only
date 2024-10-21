@@ -1,2 +1,4 @@
 // this is the ejs
-conspole.log(@import.meta.dirname)
+const __dirname = import.meta.dirname;
+
+console.log(123);
