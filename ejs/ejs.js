@@ -2,21 +2,26 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-let weekday = "";
-let weekend = "";
+let typeday = "";
+let typefun = "";
 
-const date = new Date().getDay();
-console.log(date);
-
-if (date > 4) {
-  weekday = "yes";
-} else {
-  weekend = "no";
-}
 app.get("/", (req, res) => {
-  res.render("index.ejs", { name: weekday });
+  let today = new Date().getDay();
+  if (today === 0 || today === 6) {
+    typeday = "weekend";
+    typefun = "have fun";
+  } else {
+    typeday = "weekday";
+    typefun = "work hard";
+  }
+
+  res.render("index.ejs", {
+    daytype: typeday,
+    adv: typefun,
+  });
 });
 
+//
 app.listen(port, (err) => {
   if (err) throw err;
   console.log(`the server is listening on port ${port} `);
