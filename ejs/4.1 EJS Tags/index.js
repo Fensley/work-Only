@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
   res.render("index.ejs", { item: data });
 });
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if (err) throw err;
   console.log(`Server is running on port ${port}`);
 });

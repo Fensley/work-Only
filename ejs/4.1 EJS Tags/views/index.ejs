@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%=item.title %></title>
+    <title><%= item.title %></title>
   </head>
 
   <body>
     <h1><%= item.title %></h1>
     <p>
       Current second:
-      <!-- Current second goes here -->
       <%= item.seconds %>
     </p>
 
@@ -21,8 +20,6 @@
         <li>
            <%= item.items[i] %> 
           </li>
-      
-      <!-- <p>No items to display</p> -->
       <% } %>
     </ul>
     <% } else{ %>
@@ -30,11 +27,9 @@
    <% } %>
     
     <p>
-      <!-- HTML content goes here -->
        <%-  item.htmlContent %>
     </p>
 
-    <!-- Footer goes here -->
     <%- include("footer.ejs") %>
   </body>
 </html>
