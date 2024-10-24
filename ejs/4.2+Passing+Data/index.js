@@ -11,8 +11,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/submit", (req, res) => {
-  res.send("received");
-  console.log(req.body);
+  const fl = req.body["fName"] + req.body["lName"];
+  const fulllength = fl.length;
+  res.render("index.ejs", { fulllength });
 });
 
 app.listen(port, () => {
