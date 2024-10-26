@@ -9,6 +9,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const year = new Date().getFullYear();
 
+app.get("/", (req, res) => {
+  res.render("index.ejs", { year });
+});
+
+app.post("/submit", (req, res) => {
+  const adjRandom = Math.floor(Math.random() * adj.length + 1);
+  const nounRandom = Math.floor(Math.random() * noun.length + 1);
+
+  const originalBody = (req.body = adj[adjRandom] + " " + noun[nounRandom]);
+  res.render("index.ejs", { originalBody, year });
+});
+
+app.listen(port, (err) => {
+  if (err) throw err;
+  console.log(`Listening on port ${port}`);
+});
+
 const adj = [
   "abandoned",
   "able",
@@ -5669,19 +5686,3 @@ const noun = [
   "zoot-suit",
   "zucchini",
 ];
-
-app.get("/", (req, res) => {
-  res.render("index.ejs", { year });
-});
-
-app.post("/submit", (req, res) => {
-  const adjRandom = Math.floor(Math.random() * adj.length + 1);
-  const nounRandom = Math.floor(Math.random() * noun.length + 1);
-
-  const originalBody = (req.body = adj[adjRandom] + " " + noun[nounRandom]);
-  res.render("index.ejs", { originalBody, year });
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
