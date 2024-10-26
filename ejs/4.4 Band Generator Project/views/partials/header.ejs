@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
+    <!-- Add the link to the CSS stylesheet here -->
+    <!-- Hint: the link is relative to the public folder -->
+    <title>Band Generator</title>
+  </head>
 
-  <!-- Add the link to the CSS stylesheet here -->
-  <!-- Hint: the link is relative to the public folder -->
-  <title>Band Generator</title>
-</head>
-
-<body>
-  <main>
-    <h1>Welcome to the Band Generator 🤘</h1>
+  <body>
+    <main>
+      <% if (!locals.originalBody){ %>
+        <h1>Welcome to the Band Generator 🤘</h1>
+      <%} else{ %> 
+      <h1><%= originalBody  %> </h1> 
+      <%} %>
+    </body>
+</html>

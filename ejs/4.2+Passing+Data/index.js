@@ -16,6 +16,7 @@ app.post("/submit", (req, res) => {
   res.render("index.ejs", { fulllength });
 });
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if (err) throw err;
   console.log(`Server running on port ${port}`);
 });
