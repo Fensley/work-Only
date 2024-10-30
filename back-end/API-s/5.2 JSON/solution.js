@@ -30,6 +30,7 @@ app.post("/recipe", (req, res) => {
     default:
       break;
   }
+  console.log(data);
   res.redirect("/");
 });
 
