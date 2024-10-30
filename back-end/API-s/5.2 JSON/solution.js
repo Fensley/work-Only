@@ -33,6 +33,7 @@ app.post("/recipe", (req, res) => {
   res.redirect("/");
 });
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if (err) throw err;
   console.log(`Server running on port: ${port}`);
 });
