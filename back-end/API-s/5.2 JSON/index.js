@@ -14,6 +14,19 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+//  the proper way to used it is with switch statement ex..
+switch (1) {
+  case 1:
+    console.log("its one");
+    break;
+  case 2:
+    console.log("its two");
+    break;
+
+  default:
+    break;
+}
+
 app.post("/recipe", (req, res) => {
   const jsonBody = JSON.parse(recipeJSON);
   const bodyChoice = req.body["choice"];
