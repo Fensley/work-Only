@@ -12,7 +12,6 @@ app.get("/", async (req, res) => {
   try {
     const response = await axios.get("https://bored-api.appbrewery.com/random");
     const result = response.data;
-    console.log(result);
 
     res.render("index.ejs", { data: result });
   } catch (error) {
@@ -32,7 +31,6 @@ app.post("/", async (req, res) => {
       `https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`
     );
     const result = response.data;
-    console.log(result);
     res.render("solution.ejs", {
       data: result[Math.floor(Math.random() * result.length)],
     });
