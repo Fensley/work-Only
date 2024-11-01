@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Taco Recipes</title>
-    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
-  </head>
 
-  <body>
-    <h1>Taco Town 🌮</h1>
+<head>
+  <title>Taco Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+</head>
 
-    <form action="/recipe" method="POST" class="buttons">
-      <button type="submit" value="Chicken" name="choice">🍗</button>
-      <button type="submit" value="Beef" name="choice">🥩</button>
-      <button type="submit" value="Fish" name="choice">🐟</button>
-    </form>
-    <div id="recipeContainer" class="hidden">
-      <!-- If no recipe yet, show: -->
-      <%if(!locals.bodyChoice) { %>
+<body>
+  <h1>Taco Town 🌮</h1>
+
+  <form action="/recipe" method="POST" class="buttons">
+    <button type="submit" value="Chicken" name="choice">🍗</button>
+    <button type="submit" value="Beef" name="choice">🥩</button>
+    <button type="submit" value="Fish" name="choice">🐟</button>
+  </form>
+  <div id="recipeContainer" class="hidden">
+    <!-- If no recipe yet, show: -->
+    <%if(!locals.bodyChoice) { %>
       <h2>Pick your favourite taco ingredient 👆</h2>
       <% } else{ %>
-      <!-- nested if -->
+        <!-- nested if -->
 
-      <!-- nested if -->
-      <h2><%= jsonChicken.name %></h2>
-      <h3>Ingredients:</h3>
-      <ul id="ingredientsList">
-        <li>
-          <%= jsonChicken.ingredients.protein.name%>, <%=
-          jsonChicken.ingredients.protein.preparation%>
-        </li>
+        <!-- nested if -->
+        <h2>
+          <%= jsonChicken.name %>
+        </h2>
+        <h3>Ingredients:</h3>
+        <ul id="ingredientsList">
+          <li>
+            <%= jsonChicken.ingredients.protein.name%>, <%= jsonChicken.ingredients.protein.preparation%>
+          </li>
 
-        <li><%= jsonChicken.ingredients.salsa.name%></li>
+          <li>
+            <%= jsonChicken.ingredients.salsa.name%>
+          </li>
 
-        <% jsonChicken.ingredients.toppings.map((each)=>{ %>
-        <li><%=each.quantity %> of <%=each.name %></li>
+          <% jsonChicken.ingredients.toppings.map((each)=>{ %>
+            <li>
+              <%=each.quantity %> of <%=each.name %>
+            </li>
 
-        <% }) %>
-      </ul>
-      <% } %>
-    </div>
-  </body>
+            <% }) %>
+        </ul>
+        <% } %>
+  </div>
+</body>
+
 </html>
