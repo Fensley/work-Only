@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com/";
 
-//TODO 1: Fill in your values for the 3 types of auth.
 const yourUsername = "fensley";
 const yourPassword = "lovefensley";
 const yourAPIKey = "04f87b07-6b60-40bd-82d9-6247408c00f6";
@@ -32,8 +31,6 @@ app.get("/noAuth", async (req, res) => {
 });
 
 app.get("/basicAuth", async (req, res) => {
-  //Specify that you only want the secrets from page 2
-  //HINT: This is how you can use axios to do basic auth:
   // https://stackoverflow.com/a/74632908
 
   const basic = await axios.get(
@@ -56,9 +53,6 @@ app.get("/basicAuth", async (req, res) => {
 });
 
 app.get("/apiKey", async (req, res) => {
-  //TODO 4: Write your code here to hit up the /filter endpoint
-  //Filter for all secrets with an embarassment score of 5 or greater
-
   const forApiKey = await axios.get(
     `https://secrets-api.appbrewery.com/filter?score=5&apiKey=${yourAPIKey}`
   );
@@ -72,7 +66,6 @@ app.get("/apiKey", async (req, res) => {
 });
 
 app.get("/bearerToken", async (req, res) => {
-  //TODO 5: Write your code here to hit up the /secrets/{id} endpoint
   //and get the secret with id of 42
   //HINT: This is how you can use axios to do bearer token auth:
   // https://stackoverflow.com/a/52645402
