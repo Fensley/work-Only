@@ -15,18 +15,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/noAuth", async (req, res) => {
-  //TODO 2: Use axios to hit up the /random endpoint
-  //The data you get back should be sent to the ejs file as "content"
-  //Hint: make sure you use JSON.stringify to turn the JS object from axios into a string.
-
   const response = await axios.get(`${API_URL}random`);
   console.log(response);
   const noA = response.data;
   try {
     res.render("index.ejs", { content: JSON.stringify(noA) });
   } catch (err) {
-    console.log(err);
-    res.render("index.ejs", { content: err.message });
+    res.status(404).send(err.message);
+    // res.render("index.ejs", { content: err.message });
   }
 });
 
@@ -48,7 +44,8 @@ app.get("/basicAuth", async (req, res) => {
     res.render("index.ejs", { content: JSON.stringify(bSic) });
   } catch (err) {
     console.err(err);
-    res.render("index.ejs", { content: err.message });
+    res.status(404).send(err.message);
+    // res.render("index.ejs", { content: err.message });
   }
 });
 
@@ -61,7 +58,8 @@ app.get("/apiKey", async (req, res) => {
   try {
     res.render("index.ejs", { content: JSON.stringify(dataApikey) });
   } catch (err) {
-    res.render("index.ejs", { content: err.message });
+    res.status(404).send(err.message);
+    // res.render("index.ejs", { content: err.message });
   }
 });
 
@@ -82,11 +80,12 @@ app.get("/bearerToken", async (req, res) => {
   try {
     res.render("index.ejs", { content: JSON.stringify(getMytoken) });
   } catch (err) {
-    console.error(err);
-    res.render("index.ejs", { content: err.message });
+    res.status(404).send(err.message);
+    // res.render("index.ejs", { content: err.message });
   }
 });
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if (err) throw err;
   console.log(`Server is running on port ${port}`);
 });
