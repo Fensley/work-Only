@@ -1,13 +1,6 @@
 import express from "express";
 import axios from "axios";
 
-const myapikey = {
-  username: "fensley",
-  password: "lovefensley",
-  apikey: "04f87b07-6b60-40bd-82d9-6247408c00f6",
-  token: "d70e3095-88b4-4ba8-800a-3f01b0c1cf3b",
-};
-
 const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com/";
@@ -43,12 +36,15 @@ app.get("/basicAuth", async (req, res) => {
   //HINT: This is how you can use axios to do basic auth:
   // https://stackoverflow.com/a/74632908
 
-  const basic = await axios.get(`${API_URL}secrets`, {
-    auth: {
-      username: yourUsername,
-      password: yourPassword,
-    },
-  });
+  const basic = await axios.get(
+    `https://secrets-api.appbrewery.com/all?page=2`,
+    {
+      auth: {
+        username: yourUsername,
+        password: yourPassword,
+      },
+    }
+  );
   const bSic = basic.data;
   console.log(basic);
   try {
@@ -59,24 +55,43 @@ app.get("/basicAuth", async (req, res) => {
   }
 });
 
-app.get("/apiKey", (req, res) => {
+app.get("/apiKey", async (req, res) => {
   //TODO 4: Write your code here to hit up the /filter endpoint
   //Filter for all secrets with an embarassment score of 5 or greater
-  //HINT: You need to provide a query parameter of apiKey in the request.
+
+  const forApiKey = await axios.get(
+    `https://secrets-api.appbrewery.com/filter?score=5&apiKey=${yourAPIKey}`
+  );
+  const dataApikey = forApiKey.data;
+  console.log(dataApikey);
+  try {
+    res.render("index.ejs", { content: JSON.stringify(dataApikey) });
+  } catch (err) {
+    res.render("index.ejs", { content: err.message });
+  }
 });
 
-app.get("/bearerToken", (req, res) => {
+app.get("/bearerToken", async (req, res) => {
   //TODO 5: Write your code here to hit up the /secrets/{id} endpoint
   //and get the secret with id of 42
   //HINT: This is how you can use axios to do bearer token auth:
   // https://stackoverflow.com/a/52645402
-  /*
-  axios.get(URL, {
-    headers: { 
-      Authorization: `Bearer <YOUR TOKEN HERE>` 
-    },
-  });
-  */
+
+  const myToken = await axios.get(
+    "https://secrets-api.appbrewery.com/secrets/42",
+    {
+      headers: {
+        Authorization: `Bearer ${yourBearerToken}`,
+      },
+    }
+  );
+  const getMytoken = myToken.data;
+  try {
+    res.render("index.ejs", { content: JSON.stringify(getMytoken) });
+  } catch (err) {
+    console.error(err);
+    res.render("index.ejs", { content: err.message });
+  }
 });
 
 app.listen(port, () => {
