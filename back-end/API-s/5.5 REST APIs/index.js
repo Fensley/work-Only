@@ -35,7 +35,7 @@ app.post("/post-secret", async (req, res) => {
     res.render("index.ejs", { content: JSON.stringify(ps.data) });
   } catch (err) {
     res.status(404);
-    res.render("index.ejs", { content: err.message });
+    res.render("index.ejs", { content: JSON.stringify(err.response.data) });
   }
 });
 
@@ -54,7 +54,7 @@ app.post("/put-secret", async (req, res) => {
     });
   } catch (err) {
     res.status(404);
-    res.render("index.js", { content: err.message });
+    res.render("index.ejs", { content: JSON.stringify(err.response.data) });
   }
 });
 
@@ -70,7 +70,7 @@ app.post("/patch-secret", async (req, res) => {
     res.render("index.ejs", { content: JSON.stringify(patch.data) });
   } catch (err) {
     res.status(404);
-    res.render("index.ejs", { content: err.message });
+    res.render("index.ejs", { content: JSON.stringify(err.response.data) });
   }
 });
 
@@ -87,7 +87,7 @@ app.post("/delete-secret", async (req, res) => {
     });
   } catch (err) {
     res.status(404);
-    res.render("index.ejs", { content: err.message });
+    res.render("index.ejs", { content: JSON.stringify(err.response.data) });
   }
 });
 
