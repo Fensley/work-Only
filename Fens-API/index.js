@@ -14,7 +14,6 @@ app.get("/", (req, res) => {
 app.post("/submit", async (req, res) => {
   const getAPI = await axios.get(`https://ziptasticapi.com/${req.body.code}`);
   const APIresponce = getAPI.data;
-  console.log(APIresponce);
   try {
     res.render("index.ejs", { data: APIresponce, err: APIresponce.error });
   } catch (err) {
