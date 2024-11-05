@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find my city</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <% if(locals.data){ %> <% if(err){%>
+      <p><%= err %></p>
+      <form method="post">
+        <input type="submit" value="Home" formaction="/redirect" />
+      </form>
+      <%}else{%>
+
+      <div class="apires">
+        <p>Country: <%= data.country %></p>
+        <p>State: <%= data.state %></p>
+        <p>City: <%= data.city %></p>
+      </div>
+      <form method="post">
+        <input type="submit" value="Home" formaction="/redirect" />
+      </form>
+      <%} %> <%}else{ %>
+
+      <form action="submit" method="post">
+        <p class="whatis">what is your zipcode?</p>
+        <input type="number" name="code" required />
+        <input type="submit" value="Submit" />
+      </form>
+      <% } %>
+    </section>
+  </body>
+</html>
