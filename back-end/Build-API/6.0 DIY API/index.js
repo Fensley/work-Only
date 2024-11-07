@@ -8,7 +8,7 @@ const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
-app.get("/all", (req, res) => {
+app.get("/filter", (req, res) => {
   res.json(jokes);
 });
 
@@ -25,10 +25,20 @@ app.get("/jokes/:number", (req, res) => {
   if (para <= jokes.length) {
     res.json(jokes[para]);
   } else {
-    res.json({ message: "not found" });
+    res.json({ message: "jokes has not found" });
   }
 });
 //3. GET a jokes by filtering on the joke type
+
+app.get("/=Puns", (req, res) => {
+  // console.log(req.params);
+  // const fil = jokes.filter((pun) => {
+  //   return pun.jokeType === req.params.type;
+  // });
+  // res.json(fil);
+  ////////////
+  res.json("12");
+});
 
 //4. POST a new joke
 
