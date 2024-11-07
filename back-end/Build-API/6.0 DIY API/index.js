@@ -7,6 +7,11 @@ const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/jokes", (req, res) => {
+  res.json(jokes);
+});
+
+app.use(express.json());
 // 1. GET a random joke
 app.get("/filter", (req, res) => {
   res.json(jokes);
@@ -40,9 +45,19 @@ app.get("/filter", (req, res) => {
 });
 
 //4. POST a new joke
+app.post("/jokes", (req, res) => {
+  const newJokes = {
+    id: jokes.length + 1,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  jokes.push(newJokes);
+  console.log(newJokes);
 
+  res.json(newJokes);
+});
 //5. PUT a joke
-
+// app.put()
 //6. PATCH a joke
 
 //7. DELETE Specific joke
@@ -53,7 +68,7 @@ app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
 });
 
-var jokes = [
+let jokes = [
   {
     id: 1,
     jokeText:
