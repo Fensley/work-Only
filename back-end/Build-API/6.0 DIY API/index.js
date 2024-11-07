@@ -37,7 +37,6 @@ app.get("/filter", (req, res) => {
     return pun.jokeType === type;
   });
   res.json(fil);
-  ////////////
 });
 // post testing
 app.get("/fetch", async (req, res) => {
