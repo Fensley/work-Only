@@ -38,12 +38,6 @@ app.get("/filter", (req, res) => {
   });
   res.json(fil);
 });
-// post testing
-app.get("/fetch", async (req, res) => {
-  const Ap = await fetch("http://localhost:3000/filter");
-  const response = await Ap.json();
-  res.send(response[1]);
-});
 
 //4. POST a new joke
 
