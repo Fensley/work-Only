@@ -1,13 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
-
+import axios from "axios";
 const app = express();
 const port = 3000;
 const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//1. GET a random joke
+// 1. GET a random joke
 app.get("/filter", (req, res) => {
   res.json(jokes);
 });
@@ -30,14 +30,20 @@ app.get("/jokes/:number", (req, res) => {
 });
 //3. GET a jokes by filtering on the joke type
 
-app.get("/=Puns", (req, res) => {
-  // console.log(req.params);
-  // const fil = jokes.filter((pun) => {
-  //   return pun.jokeType === req.params.type;
-  // });
-  // res.json(fil);
+app.get("/filter", (req, res) => {
+  const type = req.query.type;
+  console.log(type);
+  const fil = jokes.filter((pun) => {
+    return pun.jokeType === type;
+  });
+  res.json(fil);
   ////////////
-  res.json("12");
+});
+// post testing
+app.get("/fetch", async (req, res) => {
+  const Ap = await fetch("http://localhost:3000/filter");
+  const response = await Ap.json();
+  res.send(response[1]);
 });
 
 //4. POST a new joke
