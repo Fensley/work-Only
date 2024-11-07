@@ -19,7 +19,15 @@ app.get("/random", (req, res) => {
   res.json(jokes[randomMath]);
 });
 //2. GET a specific joke
-
+app.get("/jokes/:number", (req, res) => {
+  const para = Number(req.params.number) - 1;
+  console.log(para, req.params);
+  if (para <= jokes.length) {
+    res.json(jokes[para]);
+  } else {
+    res.json({ message: "not found" });
+  }
+});
 //3. GET a jokes by filtering on the joke type
 
 //4. POST a new joke
