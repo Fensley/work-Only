@@ -13,9 +13,9 @@ app.get("/jokes", (req, res) => {
 
 app.use(express.json());
 // 1. GET a random joke
-app.get("/filter", (req, res) => {
-  res.json(jokes);
-});
+// app.get("/filter", (req, res) => {
+//   res.json(jokes);
+// });
 
 app.get("/random", (req, res) => {
   const leng = jokes.length;
@@ -37,9 +37,9 @@ app.get("/jokes/:number", (req, res) => {
 
 app.get("/filter", (req, res) => {
   const type = req.query.type;
-  console.log(type);
+  console.log(type, req.query);
   const fil = jokes.filter((pun) => {
-    return pun.jokeType === type;
+    return pun.jokeType === req.query.type;
   });
   res.json(fil);
 });
@@ -52,7 +52,7 @@ app.post("/jokes", (req, res) => {
     jokeType: req.body.type,
   };
   jokes.push(newJokes);
-  console.log(newJokes);
+  console.log(newJokes, req.body);
 
   res.json(newJokes);
 });
