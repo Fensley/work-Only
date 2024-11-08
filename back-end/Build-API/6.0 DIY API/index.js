@@ -6,8 +6,10 @@ const port = 3000;
 const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/jokes", (req, res) => {
+  res.status(200);
   res.json(jokes);
 });
 
@@ -57,7 +59,26 @@ app.post("/jokes", (req, res) => {
   res.json(newJokes);
 });
 //5. PUT a joke
-// app.put()
+
+app.put("/update/:jokeid", (req, res) => {
+  const idjoke = Number(req.params.jokeid);
+  const editJoke = {
+    id: idjoke,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  const foundjokeid = jokes[idjoke];
+  console.log(idjoke, foundjokeid, editJoke);
+  const theone = jokes.filter((each) => {
+    return (each.id = idjoke);
+  });
+
+  console.log(theone);
+  jokes[theone] = editJoke;
+
+  res.json(editJoke);
+});
+
 //6. PATCH a joke
 
 //7. DELETE Specific joke
