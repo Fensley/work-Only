@@ -8,6 +8,10 @@ const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json(jokes);
+});
+
 app.get("/jokes", (req, res) => {
   res.status(200);
   res.json(jokes);
@@ -91,13 +95,36 @@ app.patch("/jokes/:id", (req, res) => {
   const searchIndex = jokes.findIndex((joke) => joke.id === id);
 
   jokes[searchIndex] = replacementJoke;
-  console.log(replacementJoke);
+  // console.log(replacementJoke);
   res.json(replacementJoke);
 });
 
 //7. DELETE Specific joke
-
+app.delete("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  if (searchIndex > -1) {
+    jokes.splice(searchIndex, 1);
+    res.sendStatus(200);
+  } else {
+    res
+      .status(404)
+      .json({ error: `Joke with id: ${id} not found. No jokes were deleted.` });
+  }
+});
 //8. DELETE All jokes
+
+app.delete("/all", (req, res) => {
+  const key = req.query.key;
+  if (key === masterKey) {
+    jokes = [];
+    res.status(200).json("OK");
+  } else {
+    res
+      .status(404)
+      .json({ error: `You are not authorised to perform this action.` });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
