@@ -28,7 +28,7 @@ app.get("/random", (req, res) => {
 //2. GET a specific joke
 app.get("/jokes/:number", (req, res) => {
   const para = Number(req.params.number) - 1;
-  console.log(para, req.params);
+  // console.log(para, req.params);
   if (para <= jokes.length) {
     res.json(jokes[para]);
   } else {
@@ -39,7 +39,7 @@ app.get("/jokes/:number", (req, res) => {
 
 app.get("/filter", (req, res) => {
   const type = req.query.type;
-  console.log(type, req.query);
+  // console.log(type, req.query);
   const fil = jokes.filter((pun) => {
     return pun.jokeType === req.query.type;
   });
@@ -54,7 +54,7 @@ app.post("/jokes", (req, res) => {
     jokeType: req.body.type,
   };
   jokes.push(newJokes);
-  console.log(newJokes, req.body);
+  // console.log(newJokes, req.body);
 
   res.json(newJokes);
 });
