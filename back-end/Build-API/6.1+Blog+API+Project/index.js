@@ -65,15 +65,44 @@ app.post("/posts", (req, res) => {
   posts.push(newbody);
   res.json(newbody);
 });
-//CHALLENGE 4: PATCH a post when you just want to update one parameter
+// PATCH a post when you just want to update one parameter
 app.patch("/posts/:id", (req, res) => {
   const paramId = Number(req.params.id);
-
-  res.json({ receive: paramId });
+  const currentBody = posts.find((each) => {
+    return each.id === paramId;
+  });
+  const newBody = {
+    id: paramId,
+    title: req.body.title || currentBody.title,
+    content: req.body.content || currentBody.content,
+    author: req.body.author || currentBody.author,
+    date: new Date() || currentBody.date,
+  };
+  const indexOf = posts.findIndex((i) => {
+    return i.id === paramId;
+  });
+  posts[indexOf] = newBody;
+  console.log("the index of jokes is:", indexOf);
+  res.json(newBody);
 });
 
-//CHALLENGE 5: DELETE a specific post by providing the post id.
-
+//5: DELETE a specific post by providing the post id.
+app.delete("/posts/:id", (req, res) => {
+  const paramID = Number(req.params.id);
+  const findCurrent = posts.find((each) => {
+    return each.id === paramID;
+  });
+  const indexOfcur = posts.findIndex((index) => {
+    return index.id === paramID;
+  });
+  const curr = posts.splice(indexOfcur, 1);
+  if (!findCurrent) {
+    res.status(404);
+    res.json({ err: "not found" });
+  } else {
+    res.status(200).json({ success: "OK" });
+  }
+});
 app.listen(port, () => {
   console.log(`API is running at http://localhost:${port}`);
 });
