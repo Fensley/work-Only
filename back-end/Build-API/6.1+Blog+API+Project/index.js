@@ -39,6 +39,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Write your code here//
+// app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.json(posts);
+});
 
 //CHALLENGE 1: GET All posts
 
