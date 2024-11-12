@@ -51,7 +51,7 @@ app.get("/posts/:id", (req, res) => {
     res.json(posts[paraID - 1]);
   }
 });
-//CHALLENGE 3: POST a new post
+//POST a new post
 app.post("/posts", (req, res) => {
   console.log(req.body);
 
@@ -66,6 +66,11 @@ app.post("/posts", (req, res) => {
   res.json(newbody);
 });
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
+app.patch("/posts/:id", (req, res) => {
+  const paramId = Number(req.params.id);
+
+  res.json({ receive: paramId });
+});
 
 //CHALLENGE 5: DELETE a specific post by providing the post id.
 
