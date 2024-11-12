@@ -38,15 +38,10 @@ let lastId = 3;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Write your code here//
-// app.use(express.static("public"));
-
-app.get("/", (req, res) => {
+//CHALLENGE 1: GET All posts
+app.get("/posts", (req, res) => {
   res.json(posts);
 });
-
-//CHALLENGE 1: GET All posts
-
 //CHALLENGE 2: GET a specific post by id
 
 //CHALLENGE 3: POST a new post
