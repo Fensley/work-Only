@@ -32,3 +32,22 @@ INSERT INTO products (id, name) VALUES (2, 'Pencil');
 
 --select a product with id = 2
 SELECT * FROM products WHERE id = 2;
+-----------------------------------------------
+
+Table name = Biotech
+
+--SELECT
+SELECT * FROM Biotech
+
+--ad a table
+ALTER TABLE Biotech
+ADD stock INT
+
+--UPDATE
+UPDATE Biotech
+set price=100
+WHERE firstname='jean'
+
+-- DELETE
+DELETE FROM Biotech
+WHERE id=1
