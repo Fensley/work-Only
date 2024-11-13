@@ -53,3 +53,5 @@ WHERE firstname='jean'
 -- DELETE
 DELETE FROM Biotech
 WHERE id=1
+--------------------------------
+SQL Relationships, FOREIGN KEY, inner Join
