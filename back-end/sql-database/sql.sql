@@ -1,3 +1,5 @@
+- SQL DATABASE
+
 -- create customers table
 CREATE TABLE customers (
   id INT,
