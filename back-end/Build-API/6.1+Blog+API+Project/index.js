@@ -38,11 +38,11 @@ let lastId = 3;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//CHALLENGE 1: GET All posts
+//: GET All posts
 app.get("/posts", (req, res) => {
   res.json(posts);
 });
-//CHALLENGE 2: GET a specific post by id
+// GET a specific post by id
 app.get("/posts/:id", (req, res) => {
   const paraID = Number(req.params.id);
   if (posts.length < paraID || paraID === 0) {
@@ -53,8 +53,6 @@ app.get("/posts/:id", (req, res) => {
 });
 //POST a new post
 app.post("/posts", (req, res) => {
-  console.log(req.body);
-
   const newbody = {
     id: (lastId += 1),
     title: req.body.title,
