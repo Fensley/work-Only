@@ -16,7 +16,7 @@ SELECT * FROM customers WHERE first_name = 'John';
 -- create the products table
 CREATE TABLE products (
     id INT NOT NULL,
-    name STRING,
+    name STRING,FROM 
     price MONEY,
     PRIMARY KEY (id)
 );
@@ -55,7 +55,7 @@ UPDATE products SET stock=12 WHERE id = 2;
 SELECT * FROM products;
 
 --delete a row from products table
-DELETE FROM products WHERE id = 2;
+DELETE products WHERE id = 2;
 
 --insert back the deleted row into products table
 INSERT INTO products VALUES (2, 'Pencil', 0.8, 12);
@@ -83,3 +83,5 @@ INNER JOIN customers ON orders.customer_id = customers.id;
 SELECT orders.order_number, products.name, products.price, products.stock
 FROM orders
 INNER JOIN products ON product_id = products.id;
+
+-- finaly 
