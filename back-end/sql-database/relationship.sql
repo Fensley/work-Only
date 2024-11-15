@@ -1,4 +1,6 @@
--- create customers table
+on 11-15-2024;
+
+-- create customers table 
 CREATE TABLE customers (
   id INT,
   first_name STRING,
@@ -61,7 +63,7 @@ DELETE products WHERE id = 2;
 INSERT INTO products VALUES (2, 'Pencil', 0.8, 12);
 
 -- create the orders table
-CREATE TABLE orders (
+CREATE TABLE orders ( 
   id INT NOT NULL,
   order_number INT,
   customer_id INT,
@@ -83,5 +85,3 @@ INNER JOIN customers ON orders.customer_id = customers.id;
 SELECT orders.order_number, products.name, products.price, products.stock
 FROM orders
 INNER JOIN products ON product_id = products.id;
-
--- finaly 
