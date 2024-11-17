@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 let totalCorrect = 0;
-
+//first day at millburn
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
