@@ -1,4 +1,4 @@
-id,country,capital
+id,country,capital 
 1,Afghanistan,Kabul
 2,Aland Islands,Mariehamn
 3,Albania,Tirana
@@ -248,4 +248,4 @@ id,country,capital
 244,Western Sahara,El-Aaiun
 245,Yemen,Sanaa
 246,Zambia,Lusaka
-247,Zimbabwe,Harare
+247,Zimbabwe,Harare 
