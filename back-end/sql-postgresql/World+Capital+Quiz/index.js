@@ -1,8 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
+import pg from "pg";
 
 const app = express();
 const port = 4000;
+
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "WORLD-MAPPING",
+  password: "0852",
+  port: "3000",
+});
+
+const data = db.query("SELECT * FROM world");
+console.log(data.then((i) => i.rows));
 
 let quiz = [
   { country: "France", capital: "Paris" },
