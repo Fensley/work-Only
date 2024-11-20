@@ -908,11 +908,11 @@
         />
       </svg>
     </section>
-    <!-- remove the local after -->
-    <h2 class="total-count">Total Countries: <%=locals.total%></h2>
+
+    <h2 class="total-count">Total Countries: <%=total%></h2>
     <script>
-      const country_codes = "<%= locals.countries %>".split(",");
-      console.log(typeof "<%= locals.countries %>");
+      const country_codes = "<%= countries %>".split(",");
+      console.log(typeof "<%=countries %>");
       country_codes.forEach((code) => {
         document.getElementById(code).style.fill = "teal";
       });
