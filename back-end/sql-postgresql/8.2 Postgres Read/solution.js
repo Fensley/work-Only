@@ -5,18 +5,18 @@ import pg from "pg";
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "world",
-  password: "123456",
-  port: 5432,
+  database: "WORLD-MAPPING",
+  password: "0852",
+  port: 3000,
 });
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 db.connect();
 
 let quiz = [];
-db.query("SELECT * FROM flags", (err, res) => {
+db.query("SELECT * FROM country", (err, res) => {
   if (err) {
     console.error("Error executing query", err.stack);
   } else {
