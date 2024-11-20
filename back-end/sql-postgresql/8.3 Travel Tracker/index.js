@@ -2,16 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
-// not in order
 const db = new pg.Client({
   user: "postgres",
-  host: "locsalhost",
   database: "WORLD-MAPPING",
-  password: "0852",
   port: 3000,
+  password: "0852",
+  host: "localhost",
 });
-
-console.log(db);
+db.connect();
 
 const app = express();
 const port = 4000;
@@ -20,10 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
-  //Write your code here.
+  let countries = [];
+  const result = await db.query("SELECT * FROM country_ivisited");
+  console.log(result.rows);
+
+  result.rows.forEach((each) => {
+    countries.push(each.code);
+  });
+
   res.render("index.ejs", {
-    total: "",
-    countries: "",
+    total: countries.length,
+    countries,
   });
 });
 
