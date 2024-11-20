@@ -7,8 +7,8 @@ const db = new pg.Client({
   user: "postgres",
   host: "locsalhost",
   database: "WORLD-MAPPING",
-  port: 3000,
   password: "0852",
+  port: 3000,
 });
 
 console.log(db);
