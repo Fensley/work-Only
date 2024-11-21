@@ -61,8 +61,6 @@ app.post("/add", async (req, res) => {
     total: countries.length,
     countries,
   });
-
-  // db.end();
 });
 
 app.listen(port, () => {
