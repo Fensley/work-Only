@@ -30,17 +30,39 @@ app.get("/", async (req, res) => {
     total: countries.length,
     countries,
   });
-  db.end();
+  // db.end();
 });
 
-app.post("/add", (req, res) => {
-  const countryCode = req.body.country;
-  const ct = [countryCode.toUpperCase()];
+app.post("/add", async (req, res) => {
+  let message = "";
+  const countryType = req.body.country;
+  const addQuery = await db.query("SELECT * FROM countrytwo");
+  // find each country that matching
+  const eachCoun = addQuery.rows.find((each) => {
+    return each.country_name.toLowerCase() === countryType.toLowerCase();
+  });
+
+  // add the country to the current list DB
+  const addTo_query = await db.query(
+    "INSERT INTO country_ivisited (code) VALUES($1)",
+    [eachCoun.country_code]
+  );
+
+  // back to the full list
+  let countries = [];
+
+  const result = await db.query("SELECT * FROM country_ivisited");
+
+  result.rows.forEach((each) => {
+    countries.push(each.code);
+  });
 
   res.render("index.ejs", {
-    total: ct.length,
-    countries: ct,
+    total: countries.length,
+    countries,
   });
+
+  // db.end();
 });
 
 app.listen(port, () => {
