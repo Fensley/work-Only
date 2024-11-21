@@ -17,50 +17,41 @@ const port = 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+async function checkVisisted() {
+  const result = await db.query("SELECT code FROM country_ivisited");
+
   let countries = [];
-  const result = await db.query("SELECT * FROM country_ivisited");
-  console.log(result.rows);
-
-  result.rows.forEach((each) => {
-    countries.push(each.code);
+  result.rows.forEach((country) => {
+    countries.push(country.code);
   });
+  return countries;
+}
 
-  res.render("index.ejs", {
-    total: countries.length,
-    countries,
-  });
-  // db.end();
+// GET home page
+app.get("/", async (req, res) => {
+  const countries = await checkVisisted();
+  res.render("index.ejs", { countries, total: countries.length });
 });
 
+//INSERT new country
 app.post("/add", async (req, res) => {
-  let message = "";
-  const countryType = req.body.country;
-  const addQuery = await db.query("SELECT * FROM countrytwo");
-  // find each country that matching
-  const eachCoun = addQuery.rows.find((each) => {
-    return each.country_name.toLowerCase() === countryType.toLowerCase();
-  });
-
-  // add the country to the current list DB
-  const addTo_query = await db.query(
-    "INSERT INTO country_ivisited (code) VALUES($1)",
-    [eachCoun.country_code]
+  const input = req.body["country"];
+  console.log(input);
+  const result = await db.query(
+    "SELECT country_code FROM countrytwo WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
+    [input.toLowerCase()]
   );
+  console.log(result.rows);
 
-  // back to the full list
-  let countries = [];
+  if (result.rows.length !== 0) {
+    const data = result.rows[0];
+    const countryCode = data.country_code;
 
-  const result = await db.query("SELECT * FROM country_ivisited");
-
-  result.rows.forEach((each) => {
-    countries.push(each.code);
-  });
-
-  res.render("index.ejs", {
-    total: countries.length,
-    countries,
-  });
+    await db.query("INSERT INTO country_ivisited (code) VALUES ($1)", [
+      countryCode,
+    ]);
+    res.redirect("/");
+  }
 });
 
 app.listen(port, () => {
