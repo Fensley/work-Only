@@ -30,6 +30,17 @@ app.get("/", async (req, res) => {
     total: countries.length,
     countries,
   });
+  db.end();
+});
+
+app.post("/add", (req, res) => {
+  const countryCode = req.body.country;
+  const ct = [countryCode.toUpperCase()];
+
+  res.render("index.ejs", {
+    total: ct.length,
+    countries: ct,
+  });
 });
 
 app.listen(port, () => {
