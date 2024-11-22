@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import pg from "pg";
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 const db = new pg.Client({
   user: "postgres",
@@ -72,9 +72,6 @@ app.post("/new", async (req, res) => {
   //https://www.postgresql.org/docs/current/dml-returning.html
 });
 
-app.listen(port, (err) => {
-  if (err) {
-    throw err;
-  }
+app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
