@@ -72,6 +72,9 @@ app.post("/new", async (req, res) => {
   //https://www.postgresql.org/docs/current/dml-returning.html
 });
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if (err) {
+    throw err;
+  }
   console.log(`Server running on http://localhost:${port}`);
 });
