@@ -40,7 +40,7 @@ app.get("/", async (req, res) => {
     users: users,
     color: "teal",
   });
-  console.log("home console", countries);
+  // console.log("home console", countries);
 });
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
@@ -72,7 +72,6 @@ app.post("/new", async (req, res) => {
   //https://www.postgresql.org/docs/current/dml-returning.html
 });
 
-app.listen(port, (err) => {
-  if (err) throw err;
+app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
