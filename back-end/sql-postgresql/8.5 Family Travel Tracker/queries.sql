@@ -3,6 +3,7 @@ CREATE TABLE student (
   first_name TEXT,
   last_name TEXT
 );
+ -- https://blog.devart.com/types-of-relationships-in-sql-server-database.html
  
 -- One to One --
 CREATE TABLE contact_detail (
