@@ -40,7 +40,7 @@ app.get("/", async (req, res) => {
     users: users,
     color: "teal",
   });
-  // console.log("home console", countries);
+  console.log("home console", countries);
 });
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
