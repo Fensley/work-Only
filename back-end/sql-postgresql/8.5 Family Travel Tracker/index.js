@@ -40,7 +40,6 @@ app.get("/", async (req, res) => {
     users: users,
     color: "teal",
   });
-  console.log("home console", countries);
 });
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
@@ -50,7 +49,7 @@ app.post("/add", async (req, res) => {
       "SELECT country_code FROM countrytwo WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
       [input.toLowerCase()]
     );
-    console.log("add console", result.rows);
+    // console.log("add console", result.rows);
     const data = result.rows[0];
     const countryCode = data.country_code;
     try {
@@ -66,7 +65,7 @@ app.post("/add", async (req, res) => {
   }
 });
 app.post("/user", async (req, res) => {
-  res.send("jack");
+  res.render("new.ejs");
 });
 
 app.post("/new", async (req, res) => {
