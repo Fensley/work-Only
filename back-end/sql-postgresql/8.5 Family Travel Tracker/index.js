@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import { name } from "ejs";
 
 const app = express();
 const port = 4000;
