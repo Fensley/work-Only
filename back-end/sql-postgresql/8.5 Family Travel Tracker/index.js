@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import { name } from "ejs";
 
 const app = express();
 const port = 4000;
@@ -22,6 +23,7 @@ let currentUserId = 1;
 let users = [
   { id: 1, name: "Angela", color: "teal" },
   { id: 2, name: "Jack", color: "powderblue" },
+  // { id: 3, name: "Fensley", color: "green" },
 ];
 
 async function checkVisisted() {
@@ -65,13 +67,19 @@ app.post("/add", async (req, res) => {
   }
 });
 app.post("/user", async (req, res) => {
-  res.render("new.ejs");
+  console.log(req.body);
+  if (req.body.add) {
+    res.render("new.ejs");
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.post("/new", async (req, res) => {
   //Hint: The RETURNING keyword can return the data that was inserted.
   //https://www.postgresql.org/docs/current/dml-returning.html
-  res.send("add new ");
+  console.log(req.body);
+  res.redirect("/");
 });
 
 app.listen(port, () => {
