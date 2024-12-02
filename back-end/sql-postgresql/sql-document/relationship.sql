@@ -1,4 +1,4 @@
-on 11-15-2024;
+-- on 11-15-2024;
 
 -- create customers table 
 CREATE TABLE customers (

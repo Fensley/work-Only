@@ -18,11 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 let currentUserId = 1;
-
 let users = [
   { id: 1, name: "Angela", color: "teal" },
   { id: 2, name: "Jack", color: "powderblue" },
-  { id: 3, name: "Fensley", color: "green" },
 ];
 
 async function checkVisisted() {
@@ -35,6 +33,7 @@ async function checkVisisted() {
 }
 app.get("/", async (req, res) => {
   const countries = await checkVisisted();
+  // addUsers();
   res.render("index.ejs", {
     countries,
     total: countries.length,
@@ -71,9 +70,10 @@ app.post("/add", async (req, res) => {
   }
 });
 app.post("/user", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (req.body.add) {
     res.render("new.ejs");
+    console.log(req.body.add);
   } else {
     res.redirect("/");
   }
@@ -82,7 +82,9 @@ app.post("/user", async (req, res) => {
 app.post("/new", async (req, res) => {
   //Hint: The RETURNING keyword can return the data that was inserted.
   //https://www.postgresql.org/docs/current/dml-returning.html
-  console.log(req.body);
+  const body = req.body;
+  console.log(body);
+
   res.redirect("/");
 });
 
