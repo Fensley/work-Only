@@ -22,7 +22,7 @@ let currentUserId = 1;
 let users = [
   { id: 1, name: "Angela", color: "teal" },
   { id: 2, name: "Jack", color: "powderblue" },
-  // { id: 3, name: "Fensley", color: "green" },
+  { id: 3, name: "Fensley", color: "green" },
 ];
 
 async function checkVisisted() {
@@ -41,6 +41,11 @@ app.get("/", async (req, res) => {
     users: users,
     color: "teal",
   });
+});
+app.post("/deleteall", async (req, res) => {
+  const deleteAll = await db.query("DELETE FROM country_ivisited");
+  console.log(deleteAll.rowCount);
+  res.redirect("/");
 });
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
