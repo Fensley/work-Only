@@ -46,6 +46,7 @@ app.post("/deleteall", async (req, res) => {
   console.log(deleteAll.rowCount);
   res.redirect("/");
 });
+
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
 
@@ -91,3 +92,4 @@ app.post("/new", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+console.log(users);

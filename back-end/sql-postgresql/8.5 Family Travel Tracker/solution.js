@@ -26,7 +26,7 @@ let users = [
 
 async function checkVisisted() {
   const result = await db.query(
-    "SELECT country_code FROM visited_countries JOIN users ON users.id = user_id WHERE user_id = $1; ",
+    "SELECT code FROM country_ivisited JOIN users ON users.id =country_ivisited.id  WHERE users.id = $1; ",
     [currentUserId]
   );
   let countries = [];
@@ -41,10 +41,12 @@ async function getCurrentUser() {
   users = result.rows;
   return users.find((user) => user.id == currentUserId);
 }
-
+// getCurrentUser()
 app.get("/", async (req, res) => {
   const countries = await checkVisisted();
   const currentUser = await getCurrentUser();
+  // back to it
+  console.log(currentUser);
   res.render("index.ejs", {
     countries: countries,
     total: countries.length,
@@ -58,7 +60,7 @@ app.post("/add", async (req, res) => {
 
   try {
     const result = await db.query(
-      "SELECT country_code FROM countries WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
+      "SELECT country_code FROM countrytwo WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
       [input.toLowerCase()]
     );
 
@@ -66,7 +68,7 @@ app.post("/add", async (req, res) => {
     const countryCode = data.country_code;
     try {
       await db.query(
-        "INSERT INTO visited_countries (country_code, user_id) VALUES ($1, $2)",
+        "INSERT INTO country_ivisited (code, id) VALUES ($1, $2)",
         [countryCode, currentUserId]
       );
       res.redirect("/");
@@ -95,6 +97,12 @@ app.post("/new", async (req, res) => {
     "INSERT INTO users (name, color) VALUES($1, $2) RETURNING *;",
     [name, color]
   );
+
+  app.post("/deleteall", async (req, res) => {
+    const deleteAll = await db.query("DELETE FROM country_ivisited");
+    console.log(deleteAll.rowCount);
+    res.redirect("/");
+  });
 
   const id = result.rows[0].id;
   currentUserId = id;
