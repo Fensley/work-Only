@@ -4,7 +4,7 @@ CREATE TABLE student (
   last_name TEXT
 );
  -- https://blog.devart.com/types-of-relationships-in-sql-server-database.html
- 
+
 -- One to One --
 CREATE TABLE contact_detail (
   id INTEGER REFERENCES student(id) UNIQUE,
