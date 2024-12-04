@@ -40,6 +40,7 @@ app.post("/register", async (req, res) => {
     "INSERT INTO users VALUES($1,$2) RETURNING *",
     [email, password]
   );
+  console.log(insertINTO);
   const allData = await db.query("SELECT * FROM users");
   res.render("secrets.ejs");
 });
