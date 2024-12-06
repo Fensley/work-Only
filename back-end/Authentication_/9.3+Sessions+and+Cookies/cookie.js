@@ -4,7 +4,6 @@ import express from "express";
 const app = express();
 const port = 1000;
 
-// Add the cookie-parser middleware
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
