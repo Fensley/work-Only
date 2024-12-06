@@ -74,6 +74,7 @@ app.post("/login", async (req, res) => {
       const user = result.rows[0];
       const storedHashedPassword = user.password;
       bcrypt.compare(loginPassword, storedHashedPassword, (err, result) => {
+        console.log(result);
         if (err) {
           console.error("Error comparing passwords:", err);
         } else {
