@@ -8,7 +8,7 @@ app.use(
     secret: "fensley",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 900000 },
+    cookie: { maxAge: 9000000 },
   })
 );
 
@@ -24,6 +24,15 @@ app.get("/get", (req, res) => {
   } else {
     res.send("please login first");
   }
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Error logging out.");
+    }
+    res.send("User logged out!");
+  });
 });
 
 app.listen(port, () => {
