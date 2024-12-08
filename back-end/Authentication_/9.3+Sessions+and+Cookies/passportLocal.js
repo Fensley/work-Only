@@ -11,7 +11,7 @@ app.use(
     secret: "my-secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 },
+    cookie: { maxAge: 1000 * 60 * 60 },
   })
 );
 app.use(passport.initialize());
