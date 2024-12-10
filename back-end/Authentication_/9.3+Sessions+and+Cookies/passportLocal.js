@@ -11,7 +11,7 @@ app.use(
     secret: "my-secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 },
+    cookie: { maxAge: 1000 * 60 * 2 },
   })
 );
 app.use(passport.initialize());
@@ -72,6 +72,8 @@ app.post(
 );
 
 app.get("/dashboard", (req, res) => {
+  console.log(req.isAuthenticated());
+
   if (req.isAuthenticated()) {
     res.send(`Welcome ${req.user.username}`);
   } else {
