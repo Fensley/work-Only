@@ -4,6 +4,7 @@ import { Strategy as LocalStrategy } from "passport-local";
 import session from "express-session";
 
 const app = express();
+const port = 1000;
 
 // Middleware setup
 app.use(
@@ -11,7 +12,7 @@ app.use(
     secret: "my-secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 2 },
+    cookie: { maxAge: 1000 * 60 * 5 },
   })
 );
 app.use(passport.initialize());
@@ -80,6 +81,6 @@ app.get("/dashboard", (req, res) => {
   }
 });
 
-app.listen(1000, () => {
-  console.log(`Server running on http://localhost:1000`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
