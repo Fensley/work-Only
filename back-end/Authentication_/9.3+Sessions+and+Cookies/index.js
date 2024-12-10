@@ -16,7 +16,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 5,
+      maxAge: 1000 * 60 * 1,
     },
   })
 );
@@ -49,6 +49,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/secrets", (req, res) => {
+  // console.log(req);
   if (req.isAuthenticated()) {
     res.render("secrets.ejs");
   } else {
@@ -74,11 +75,15 @@ app.post("/register", async (req, res) => {
           console.error("Error hashing password:", err);
         } else {
           console.log("Hashed Password:", hash);
-          await db.query(
-            "INSERT INTO users (email, password) VALUES ($1, $2)",
+          const result = await db.query(
+            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
             [email, hash]
           );
-          res.render("secrets.ejs");
+          const user = result.rows[0];
+          req.login(user, (err) => {
+            console.log(err);
+            res.redirect("/secrets");
+          });
         }
       });
     }
