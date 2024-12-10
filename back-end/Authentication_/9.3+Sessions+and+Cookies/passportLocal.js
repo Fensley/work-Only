@@ -62,7 +62,6 @@ app.get("/login", (req, res) => {
     </form>
   `);
 });
-
 app.post(
   "/login",
   passport.authenticate("local", {

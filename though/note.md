@@ -1,5 +1,6 @@
 -- 12/09/24
 https://www.rntz.net/post/against-software-development.html
+
 To those who have a choice:
 
 Refuse to work on systems that profit from digital addictions.
