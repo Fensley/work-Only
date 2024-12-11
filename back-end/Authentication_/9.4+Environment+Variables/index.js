@@ -11,9 +11,10 @@ const app = express();
 const port = 4000;
 const saltRounds = 10;
 env.config();
+
 app.use(
   session({
-    secret: "TOPSECRETWORD",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
