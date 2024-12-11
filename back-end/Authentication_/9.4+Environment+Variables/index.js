@@ -151,10 +151,3 @@ passport.deserializeUser((user, cb) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
-// SESSION_SECRET="TOPSECRETWORD"
-// PG_USER="postgres"
-// PG_HOST="localhost"
-// PG_DATABASE="SECRET"
-// PG_PASSWORD="0852"
-// PG_PORT="3000"
