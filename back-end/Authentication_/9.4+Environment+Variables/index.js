@@ -11,12 +11,15 @@ const app = express();
 const port = 4000;
 const saltRounds = 10;
 env.config();
-
+ccc;
 app.use(
   session({
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 2,
+    },
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
