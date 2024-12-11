@@ -1,6 +1,7 @@
 -- 12/09/24
 https://www.rntz.net/post/against-software-development.html
 
+-- live by this dicipline
 To those who have a choice:
 
 Refuse to work on systems that profit from digital addictions.
