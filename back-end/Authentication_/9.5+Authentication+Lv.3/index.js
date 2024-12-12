@@ -38,6 +38,10 @@ const db = new pg.Client({
 });
 db.connect();
 
+app.get("/auth/google", (req, res) => {
+  res.send("click to sign in to google");
+});
+
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
