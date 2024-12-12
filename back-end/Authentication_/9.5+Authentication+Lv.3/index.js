@@ -8,7 +8,7 @@ import session from "express-session";
 import env from "dotenv";
 
 const app = express();
-const port = 3000;
+const port = 4000;
 const saltRounds = 10;
 env.config();
 
@@ -57,7 +57,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/secrets", (req, res) => {
-  console.log(req.user);
+  // console.log(req.user);
   if (req.isAuthenticated()) {
     res.render("secrets.ejs");
   } else {
