@@ -1,7 +1,4 @@
---- google auth secret
-Client ID: 691187506580-qvg3fdjt3qf2p626cckcluqvdeak1qhf.apps.googleusercontent.com
-Client secret:
-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
+---THOUGH
 
 <>
 -- 12/09/24
