@@ -15,9 +15,10 @@ env.config();
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: "TOPSECRETWORD",
     resave: false,
-    saveUninitialized: false, // Prevent unnecessary session creation
+    saveUninitialized: false,
+    // Prevent unnecessary session creation
     cookie: {
       maxAge: 1000 * 60 * 5,
     },
@@ -161,7 +162,8 @@ passport.use(
   "google",
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientID:
+        "691187506580-qvg3fdjt3qf2p626cckcluqvdeak1qhf.apps.googleusercontent.com",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:4000/auth/google/secrets",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
