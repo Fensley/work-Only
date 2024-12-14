@@ -1,5 +1,6 @@
 ---THOUGH
-
+12/13/24 @ 4:50pm
+i finished the lesson. now its getting real. i'm happy
 <>
 -- 12/09/24
 https://www.rntz.net/post/against-software-development.html
