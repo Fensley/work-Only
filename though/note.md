@@ -1,6 +1,7 @@
 ---THOUGH
-12/18/24 second day in tulum thing are going okay tired a lit bit and i have nor work since then.
 
+12/18/24 second day in tulum thing are going okay tired a lit bit and i have nor work since then.
+< >
 12/13/24 @ 4:50pm
 i finished the lesson. now its getting real. i'm happy
 <>
@@ -18,7 +19,7 @@ Refuse to work on systems that weaponize the fabric of society.
 
 Above all, refuse to work on systems that understand and manipulate people, but offer no affordance for their subjects to understand and manipulate them.
 
-<>
+< >
 tue 26 november at -MB
 -- seret
 
