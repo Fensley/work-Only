@@ -1,5 +1,9 @@
 ---THOUGH
 
+12/20/20
+back to work
+<>
+
 12/18/24 second day in tulum thing are going okay tired a lit bit and i have nor work since then.
 < >
 12/13/24 @ 4:50pm
