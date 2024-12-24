@@ -1,5 +1,9 @@
 ---THOUGH
-<> live a life where you don't need to escape from--
+<>
+12/24/24
+a day in the city & happy holiday
+<>
+live a life where you don't need to escape from--
 12/20/20
 back to work
 <>
