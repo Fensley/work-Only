@@ -2,7 +2,7 @@
 <>
 12/24/24
 -- a bit cold so far so good i love it there qhere i am.
-it's a cute little and it has a great wify to work there aswell speed internet is 500+ i'll definitely come back again!
+it's a cute little and it has a great wify to work there aswell speed internet is 500+ i'll definitely come back again..!
 a day in the city & happy holiday
 <>
 live a life where you don't need to escape from--
