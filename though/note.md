@@ -1,6 +1,7 @@
 ---THOUGH
 <>
 12/24/24
+-- lonely
 -- a bit cold so far so good i love it there qhere i am.
 it's a cute little and it has a great wify to work there aswell speed internet is 500+ i'll definitely come back again..!
 -- pizza night
