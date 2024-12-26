@@ -1,4 +1,6 @@
 ---THOUGH
+12/27/24
+take the day off to prepare for big stuff. & pizza night!
 <>
 12/24/24
 -- lonely
