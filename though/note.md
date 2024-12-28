@@ -1,4 +1,9 @@
 ---THOUGH
+
+12/28/24
+intro to https://app.mindstudio.ai/
+<>
+
 12/27/24
 take the day off to prepare for big stuff. & pizza night!
 <>
