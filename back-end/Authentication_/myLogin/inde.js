@@ -20,6 +20,13 @@ app.get("/signup", (req, res) => {
 app.get("/home", (req, res) => {
   res.redirect("/");
 });
+// post routes
+app.post("/login", (req, res) => {
+  res.render("success.ejs");
+});
+app.post("/signup", (req, res) => {
+  res.render("success.ejs");
+});
 
 app.listen(port, (err) => {
   if (err) throw err;

@@ -9,12 +9,22 @@
   <body>
     <section>
       <h1>Login</h1>
-      <form>
+      <form action="login" method="post">
         <label for="user">Email</label>
-        <input type="text" placeholder="Enter your email" name="email" />
+        <input
+          required
+          type="text"
+          placeholder="Enter your email"
+          name="email"
+        />
 
         <label for="user">Password</label>
-        <input type="text" placeholder="Enter your password" name="pass" />
+        <input
+          required
+          type="text"
+          placeholder="Enter your password"
+          name="pass"
+        />
         <input type="submit" />
       </form>
       <p><a href="home">home</a></p>
