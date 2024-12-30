@@ -1,5 +1,7 @@
 ---THOUGH
-
+12/30/24
+back to my fav cafe in the city!
+<>
 12/28/24
 intro to https://app.mindstudio.ai/
 <>
