@@ -1,9 +1,12 @@
 import express from "express";
 import env from "dotenv";
+import bodyParser from "body-parser";
 
 env.config();
 const port = 4000;
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
 app.use("/public", express.static("public"));
@@ -25,9 +28,15 @@ app.get("/home", (req, res) => {
 });
 // post routes
 app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.pass;
+  console.log(`user: ${email} `, `password: ${password}`);
   res.render("success.ejs");
 });
 app.post("/signup", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.pass;
+  console.log(`user: ${email} `, `password: ${password}`);
   res.render("success.ejs");
 });
 
