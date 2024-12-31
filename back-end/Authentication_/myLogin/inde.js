@@ -1,10 +1,25 @@
 import express from "express";
 import env from "dotenv";
 import bodyParser from "body-parser";
-
+import pg from "pg";
 env.config();
 const port = 4000;
 const app = express();
+
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "SECRET",
+  password: "0852",
+  port: "3000",
+});
+db.connect();
+
+async function NewFunction() {
+  const data = await db.query("SELECT * FROM users");
+  console.log(data.rows);
+}
+NewFunction();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
