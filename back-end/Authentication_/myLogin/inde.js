@@ -14,6 +14,8 @@ const db = new pg.Client({
   port: "3000",
 });
 db.connect();
+// a test function and it worked!
+// now let implement it.\'
 
 async function NewFunction() {
   const data = await db.query("SELECT * FROM users");
