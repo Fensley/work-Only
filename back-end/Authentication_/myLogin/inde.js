@@ -14,14 +14,12 @@ const db = new pg.Client({
   port: "3000",
 });
 db.connect();
-// a test function and it worked!
-// now let implement it.\'
 
-async function NewFunction() {
-  const data = await db.query("SELECT * FROM users");
-  console.log(data.rows);
-}
-NewFunction();
+// async function NewFunction() {
+//   const data = await db.query("SELECT * FROM users");
+//   console.log(data.rows);
+// }
+// NewFunction();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -44,13 +42,13 @@ app.get("/home", (req, res) => {
   res.redirect("/");
 });
 // post routes
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
   console.log(`user: ${email} `, `password: ${password}`);
   res.render("success.ejs");
 });
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
   console.log(`user: ${email} `, `password: ${password}`);
