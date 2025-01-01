@@ -41,13 +41,28 @@ app.get("/signup", (req, res) => {
 app.get("/home", (req, res) => {
   res.redirect("/");
 });
+
 // post routes
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-  console.log(`user: ${email} `, `password: ${password}`);
-  res.render("success.ejs");
+  try {
+    const data = await db.query("SELECT * FROM userstwo WHERE email=$1", [
+      email,
+    ]);
+    const results = data.rows[0];
+    if (results) {
+      console.log(results);
+      res.render("success.ejs");
+    } else {
+      res.redirect("/login");
+    }
+  } catch (error) {
+    console.error("error with the database", error);
+    // res.redirect("/");
+  }
 });
+
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
