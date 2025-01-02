@@ -2,9 +2,31 @@ import express from "express";
 import env from "dotenv";
 import bodyParser from "body-parser";
 import pg from "pg";
+import session from "express-session";
 env.config();
 const port = 4000;
 const app = express();
+
+app.use(
+  session({
+    secret: "NOTASECRET",
+    resave: false,
+    saveUninitialized: false, // Save sessions only with data
+    cookie: {
+      maxAge: 1000 * 60 * 10, // 10 minutes
+      secure: false, // Set to true if using HTTPS
+      sameSite: "lax", // Adjust as needed
+      path: "/", // Make cookie accessible site-wide
+      // domain: "localhost",  // Uncomment for explicit domain control
+    },
+  })
+);
+app.use((req, res, next) => {
+  if (req.session.user) {
+    console.log("Session exists:", req.session.user);
+  }
+  next();
+});
 
 const db = new pg.Client({
   user: "postgres",
@@ -64,20 +86,29 @@ app.post("/login", async (req, res) => {
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-  try {
-    const data = await db.query(
-      `INSERT INTO userstwo values ($1,$2) RETURNING *`,
-      [email, password]
-    );
-    const returnData = data.rows;
-    console.log(returnData);
-    if (returnData) {
-      res.render("success.ejs");
-    } else {
-      res.redirect("/signup");
+
+  const existData = await db.query("SELECT * FROM userstwo");
+  const resultsData = existData.rows;
+  console.log(resultsData);
+  const checkIfexist = resultsData.some((data) => data.email === email);
+  if (checkIfexist) {
+    res.redirect("/login");
+  } else {
+    try {
+      const data = await db.query(
+        `INSERT INTO userstwo values ($1,$2) RETURNING *`,
+        [email, password]
+      );
+      const returnData = data.rows;
+      console.log(returnData);
+      if (returnData) {
+        res.render("success.ejs");
+      } else {
+        res.redirect("/signup");
+      }
+    } catch (error) {
+      console.error(err);
     }
-  } catch (error) {
-    console.error(err);
   }
 });
 
