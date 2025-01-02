@@ -3,31 +3,10 @@ import env from "dotenv";
 import bodyParser from "body-parser";
 import pg from "pg";
 import session from "express-session";
+
 env.config();
 const port = 4000;
 const app = express();
-
-app.use(
-  session({
-    secret: "NOTASECRET",
-    resave: false,
-    saveUninitialized: false, // Save sessions only with data
-    cookie: {
-      maxAge: 1000 * 60 * 10, // 10 minutes
-      secure: false, // Set to true if using HTTPS
-      sameSite: "lax", // Adjust as needed
-      path: "/", // Make cookie accessible site-wide
-      // domain: "localhost",  // Uncomment for explicit domain control
-    },
-  })
-);
-app.use((req, res, next) => {
-  if (req.session.user) {
-    console.log("Session exists:", req.session.user);
-  }
-  next();
-});
-
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
@@ -36,6 +15,17 @@ const db = new pg.Client({
   port: "3000",
 });
 db.connect();
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 10,
+    },
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
