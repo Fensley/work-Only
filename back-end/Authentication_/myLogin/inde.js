@@ -3,10 +3,13 @@ import env from "dotenv";
 import bodyParser from "body-parser";
 import pg from "pg";
 import session from "express-session";
+import bcrypt from "bcrypt";
 
 env.config();
 const port = 4000;
 const app = express();
+const saltRound = 10;
+
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
@@ -52,18 +55,25 @@ app.get("/home", (req, res) => {
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
+
   try {
     const data = await db.query("SELECT * FROM userstwo WHERE email=$1", [
       email,
     ]);
     const results = data.rows[0];
     if (results) {
-      if (results.email === email && results.password === password) {
-        console.log(results);
-        res.render("success.ejs");
-      } else {
-        res.redirect("/login");
-      }
+      bcrypt.compare(password, results.password, (err, resultCompare) => {
+        if (err) {
+          console.log("err compare the password");
+        } else {
+          if (resultCompare) {
+            // console.log(results);
+            res.render("success.ejs");
+          } else {
+            res.redirect("/login");
+          }
+        }
+      });
     } else {
       res.redirect("/signup");
     }
@@ -80,21 +90,28 @@ app.post("/signup", async (req, res) => {
   const resultsData = existData.rows;
   console.log(resultsData);
   const checkIfexist = resultsData.some((data) => data.email === email);
+
   if (checkIfexist) {
     res.redirect("/login");
   } else {
     try {
-      const data = await db.query(
-        `INSERT INTO userstwo values ($1,$2) RETURNING *`,
-        [email, password]
-      );
-      const returnData = data.rows;
-      console.log(returnData);
-      if (returnData) {
-        res.render("success.ejs");
-      } else {
-        res.redirect("/signup");
-      }
+      bcrypt.hash(password, saltRound, async (err, hash) => {
+        if (err) {
+          console.log("error hashing the password", err.message);
+        } else {
+          const data = await db.query(
+            `INSERT INTO userstwo values ($1,$2) RETURNING *`,
+            [email, hash]
+          );
+          const returnData = data.rows;
+          console.log(returnData);
+          if (returnData) {
+            res.render("success.ejs");
+          } else {
+            res.redirect("/signup");
+          }
+        }
+      });
     } catch (error) {
       console.error(err);
     }
