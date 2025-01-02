@@ -69,14 +69,13 @@ app.post("/login", async (req, res) => {
     }
   } catch (error) {
     console.error("error with the database", error);
-    // res.redirect("/");
+    res.redirect("/");
   }
 });
 
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-
   const existData = await db.query("SELECT * FROM userstwo");
   const resultsData = existData.rows;
   console.log(resultsData);
