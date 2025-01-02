@@ -15,12 +15,6 @@ const db = new pg.Client({
 });
 db.connect();
 
-// async function NewFunction() {
-//   const data = await db.query("SELECT * FROM users");
-//   console.log(data.rows);
-// }
-// NewFunction();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
@@ -52,10 +46,14 @@ app.post("/login", async (req, res) => {
     ]);
     const results = data.rows[0];
     if (results) {
-      console.log(results);
-      res.render("success.ejs");
+      if (results.email === email && results.password === password) {
+        console.log(results);
+        res.render("success.ejs");
+      } else {
+        res.redirect("/login");
+      }
     } else {
-      res.redirect("/login");
+      res.redirect("/signup");
     }
   } catch (error) {
     console.error("error with the database", error);
@@ -66,8 +64,21 @@ app.post("/login", async (req, res) => {
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-  console.log(`user: ${email} `, `password: ${password}`);
-  res.render("success.ejs");
+  try {
+    const data = await db.query(
+      `INSERT INTO userstwo values ($1,$2) RETURNING *`,
+      [email, password]
+    );
+    const returnData = data.rows;
+    console.log(returnData);
+    if (returnData) {
+      res.render("success.ejs");
+    } else {
+      res.redirect("/signup");
+    }
+  } catch (error) {
+    console.error(err);
+  }
 });
 
 app.listen(port, (err) => {
