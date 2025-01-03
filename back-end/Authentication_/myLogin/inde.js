@@ -55,8 +55,8 @@ app.get("/home", (req, res) => {
 
 // post routes
 app.post("/login", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.pass;
+  const email = req.body.username;
+  const password = req.body.password;
 
   try {
     const data = await db.query("SELECT * FROM userstwo WHERE email=$1", [
@@ -86,8 +86,8 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.pass;
+  const email = req.body.username;
+  const password = req.body.password;
   const existData = await db.query("SELECT * FROM userstwo");
   const resultsData = existData.rows;
   console.log(resultsData);
