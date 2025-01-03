@@ -6,7 +6,13 @@
     <title>success</title>
   </head>
   <body>
-    <h1 style="color: gray">Welcome!</h1>
+    <!-- <h1 style="color: gray">Welcome!</h1> -->
+    <h1 style="color: gray">Welcome, <%= user.email %></h1>
+
+    <form action="/signout" method="post">
+      <input type="submit" value="Log out" />
+    </form>
+
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex iure est
       cumque, doloremque nobis mollitia vero atque. Qui soluta voluptatum quis
